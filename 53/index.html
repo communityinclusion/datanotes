@@ -55,7 +55,7 @@
 </p>
 
 <table class="table table-striped table-hover table-bordered" summary="Table 1. Individuals who Received PSE Services by Intellectual Disability Status">
-    <caption>Table 1.Individuals who Received PSE Services by Intellectual Disability Status</caption>
+    <caption>Table 1. Individuals who Received PSE Services by Intellectual Disability Status</caption>
     <tbody>
         <tr>
             <th>
@@ -269,7 +269,6 @@
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"> </script>
   <div id="chart_div"></div>
 
-    <img src="dn53_1.png" alt="Figure 1. VR Closures who Received Postsecondary Educations Services from VR by Intellectual Disability Status">
 </p>
 <p>
     The goal of providing these services is to build toward an employment outcome. Of the many reasons a VR customer might be closed out of a VR system, a
@@ -283,8 +282,7 @@
 </p>
 <p>
     <strong>Figure 2.Rehabilitation Rate of VR Closures Who Received PSE Services by Intellectual Disability Status</strong>
-    <img src="dn53_2.png" alt="Figure 2.Rehabilitation Rate of VR Closures Who Received PSE Services by Intellectual Disability Status">
-    
+      <div id="chart_div2"></div>
 </p>
 <p>
     Overall, the data support the notion that it is important to continue monitoring PSE services provided to VR consumers, particularly for individuals with
@@ -361,11 +359,64 @@ function drawAnnotations() {
           minValue: 0,
         },
         vAxis: {
-          title: 'Program Type'
+          title: ''
         }
       };
       var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
       chart.draw(data, options);
     }</script>
+    <script>
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawAnnotations);
+
+function drawAnnotations() {
+      var data = google.visualization.arrayToDataTable([
+        ['Program Type', 'No ID', 'Has ID'],
+        ['No PSE Services', 59.2, 58.1],
+        ['Got PSE Services', 56.0, 60.9],
+        
+      ]);
+
+      var data = google.visualization.arrayToDataTable([
+        ['Program Type', 'No ID', {type: 'string', role: 'annotation'},
+         'Has ID', {type: 'string', role: 'annotation'}],
+        ['No PSE Services', 59.2, '59.2%', 58.1, '58.1%'],
+        ['Got PSE Services', 56.0, '56.0%', 60.9, '60.9%'],
+       
+      ]);
+
+      var options = {
+        title: '',
+        chartArea: {width: '50%'},
+        annotations: {
+          alwaysOutside: true,
+          textStyle: {
+            fontSize: 12,
+            auraColor: 'none',
+            color: '#555'
+          },
+          boxStyle: {
+            stroke: '#ccc',
+            strokeWidth: 1,
+            gradient: {
+              color1: '#f3e5f5',
+              color2: '#f3e5f5',
+              x1: '0%', y1: '0%',
+              x2: '100%', y2: '100%'
+            }
+          }
+        },
+        hAxis: {
+          title: '',
+          minValue: 0,
+        },
+        vAxis: {
+          title: ''
+        }
+      };
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div2'));
+      chart.draw(data, options);
+    }
+    </script>
 </body>
 </html>
